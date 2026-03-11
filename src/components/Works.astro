@@ -1,0 +1,67 @@
+---
+import Bars from "./Bars.astro";
+
+import svgUnderline from "../assets/underline.svg";
+import arrowCard from "../assets/arrow-card.svg";
+import imgJardinage from "../assets/jardinage.jpeg"
+
+const sections = [
+    {
+        title: "Un programme personnalisé",
+        desc: `L'effectif de la classe est limité à 6 élèves afin de garantir un <strong>accompagnement individualisé</strong>.
+        Cette organisation permet à l'enseignante et l'AESH d'être au plus près de chaque élève et d'adapter le programme selon le niveau scolaire de chacun.<br/>
+        Cet accompagnement sur-mesure poursuit toutefois un objectif commun à tous : l'obtention du <strong>Certificat de Formation Générale (CFG)</strong>, une reconnaissance officielle des acquis qui favorise l'insertion professionnelle des élèves.`,
+        cover: imgJardinage.src,
+    },
+    {
+        title: "Un pas à pas vers l'autonomie",
+        desc: `Le programme est conçu pour que les élèves gagnent en autonomie afin de se préparer à leur vie d'adulte. En plus des matières fondamentales, <strong>des cours d'informatique</strong>, <strong>de cuisine</strong> et <strong>d'anglais</strong> sont proposés par des bénévoles. Des <strong>sorties pédagogiques</strong> permettent également de développer les compétences de la vie quotidienne — utiliser les transports en commun, faire les courses, payer, attendre son tour, etc.<br/>
+Enfin, la classe accompagne les élèves les plus âgés dans la <strong>recherche de stages en entreprises</strong>, afin de les familiariser avec le monde du travail.`,
+        cover: imgJardinage.src,
+    },
+    {
+        title: "Notre force : l'inclusion",
+        desc: `La classe bénéficie d'un écosystème éducatif unique favorisant une <strong>inclusion à deux niveaux</strong>.
+Un partenariat avec l'école primaire l'Étoile à Dijon, permet aux élèves de suivre certains cours (français, maths, sciences, etc.) en classes ordinaires et de partager les repas, les récréations, le sport et des sorties avec les autres enfants de primaire.
+Un partenariat avec le collège du Parc à Dijon permet aux élèves de participer à l'entretien des potagers pédagogiques, alliant apprentissages concrets et inclusion auprès d'adolescents de leur âge.`,
+        cover: imgJardinage.src,
+    }
+];
+---
+
+<section class="py-25 space-y-10 px-5" id="work">
+    <div class="max-w-3xl mx-auto grid grid-cols-1 gap-10">
+        {sections.map((item, index) => (
+    <div class={`
+        flex flex-col gap-5 items-start md:items-center bg-[var(--white)] p-4 md:p-5 border-2 mb-10 
+        shadow-[6px_6px_0px_rgba(0,0,0,1)]
+        ${index % 2 !== 0 ? 'md:flex-row-reverse' : 'md:flex-row'}
+    `}>
+        
+        {/* Conteneur Image */}
+        <div class="w-full md:w-auto">
+            <div class="w-full md:w-[150px] h-[200px] md:h-[180px] overflow-hidden border-2 bg-gray-100">
+                <img 
+                    src={item.cover} 
+                    alt={item.title} 
+                />
+            </div>
+        </div>
+
+        {/* Conteneur Texte */}
+        <div class="flex flex-col gap-2 w-full text-justify">
+            <div class="flex w-full items-start">
+                <h2 class="text-xl md:text-3xl font-black uppercase italic leading-none flex-1">
+                    {item.title}
+                </h2>
+            </div>
+
+            <div 
+                class="text-sm md:text-base leading-relaxedopacity-80" 
+                set:html={item.desc}
+            ></div>
+        </div>
+    </div>
+))}
+    </div>
+</section>

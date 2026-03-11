@@ -1,0 +1,44 @@
+---
+import '../styles/global.css'
+import Layout from "../layouts/Layout.astro";
+
+import AppHeader from '../components/Header.astro';
+import AppFooter from '../components/Footer.astro';
+
+const sections = [
+    {
+        title: "Une classe sur mesure",
+        desc: `La Classe Claire-Aime est une classe spécialisée accueillant des jeunes de <strong>11 à 17 ans</strong> présentant une <strong>déficience intellectuelle</strong>. Pensée comme un lieu bienveillant et structuré, et conçue pour de <strong>petits effectifs</strong>, elle offre à chaque élève un cadre scolaire adapté où il peut progresser, s'épanouir et vivre des moments d'<strong>inclusion</strong> ajustés au plus près de ses besoins.`,
+    },
+    {
+        title: "Une réponse à un besoin",
+        desc: `Ouverte en septembre 2024, la classe Claire-Aime est une réponse concrète aux besoins des familles cherchant un <strong>cadre adapté pour leurs enfants après les années de primaire</strong>. Face au manque de solutions dans le milieu scolaire classique et à des IME parfois inadaptés pour certains jeunes, cette classe offre une <strong>alternative jusqu'à présent inexistante en France!</strong>`,
+    },
+];
+---
+<Layout>
+    <AppHeader />
+    
+
+        <div class="max-w-3xl mx-auto py-10">
+          <div class="text-center mb-15">
+            <h1 class="title text-5xl font-black">Qui sommes nous</h1>
+          </div>
+        </div>
+
+<div class="flex flex-col gap-10">
+    {sections.map((item) => 
+    <section class="px-3">
+    <div class="max-w-3xl mx-auto bg-white text-center flex flex-col gap-4 border-3 shadow-[8px_8px_0px_rgba(0,0,0,0.3)]  relative p-10">
+     <h1 class="text-3xl">{item.title}</h1>
+     <p class="text-lg mx-auto text-justify" set:html={item.desc}>
+        
+     </p>
+    </div>
+  </section>
+    )
+
+    }
+</Layout>
+</div>
+    <AppFooter />
