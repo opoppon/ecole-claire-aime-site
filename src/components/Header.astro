@@ -1,6 +1,6 @@
 ---
 import imgCraie from "../assets/craie.png";
-import { author } from "../claireaime";
+import Button from "../components/Button.astro"
 
 const links = [
     { name: "Accueil", path: "/", target: "_self" },
@@ -18,29 +18,31 @@ const { pathname } = Astro.url;
         class="absolute right-9 top-1 w-12 lg:w-16"
     />
     <div
-        class="flex  bg-white max-w-[310px] md:max-w-xl m-auto relative z-10"
+        class="flex bg-white max-w-[310px] md:max-w-xl m-auto relative z-10"
     >
         <nav class="flex w-full items-center p-2 md:p-0">
             <a href="#" class="flex md:hidden" id="menu-open">
                 <i class="ri-menu-2-line text-2xl"></i>
             </a>            
-            <ul class="hidden md:flex">
+            <ul class="hidden md:flex items-center gap-15">
                 {links.map((item) => (
-                        <li class="p-3 py-4">
-                            <a
-                                href={item.path}
-                                target={item.target}
-                                class="whitespace-nowrap relative flex items-center before:absolute before:left-0 before:bottom-1 before:h-[8px] before:w-0 before:bg-[var(--yellow)] before:transition-all before:duration-300 hover:before:w-full"
-                            >
-                                
-                                <span class="relative z-5 text-xl font-medium">
-                                    {item.name}
-                                </span>
-                            </a>
-                        </li>
-                    ))
-                }
-            </ul>
+                <li class="p-3 py-4">
+                    {item.path === "/dons/" ? (
+                    <Button text={item.name} link={item.path} target={item.target} />
+                    ) : (
+                    <a
+                        href={item.path}
+                        target={item.target}
+                        class="whitespace-nowrap relative flex items-center before:absolute before:left-0 before:bottom-1 before:h-[8px] before:w-0 before:bg-[var(--yellow)] before:transition-all before:duration-300 hover:before:w-full"
+                    >
+                        <span class="relative z-5 text-xl font-medium">
+                            {item.name}
+                        </span>
+                    </a>
+                    )}
+                </li>
+                ))}
+            </ul>            
         </nav>
     </div>
 </header>
