@@ -1,20 +1,32 @@
 
 ---
-
+import { Image } from 'astro:assets';
+import myBackground from '../assets/3kids.jpg';
 ---
-<section class="max-w-4xl mx-auto p-4 md:pt-20">
-    <div class="flex flex-col items-center text-center gap-6">        
+<section class="max-w-4xl mx-auto p-4 md:pt-20 py-10">
+    <div class="flex flex-col items-center text-center gap-8">        
         <h1 class="text-4xl md:text-6xl font-medium">
             <span>Classe</span>
             <span class="relative inline-block">
-                <span class="absolute bg-[var(--yellow)] w-full h-[40%] left-0 bottom-1 z-1"></span>
-                <span class="relative z-5">Claire-Aime</span>
+                <span class="absolute bg-[var(--yellow)] w-full h-[40%] left-0 bottom-1 z-0"></span>
+                <span class="relative z-10">Claire-Aime</span>
             </span>
         </h1>
-
-        <p class="text-lg md:text-2xl max-w-2xl leading-relaxed">
+        
+        <p class="text-lg md:text-2xl max-w-2xl leading-relaxed font-semibold">
             Une solution sur-mesure pour les jeunes de 11 à 17 ans présentant une déficience intellectuelle.
         </p>
 
+        <div class="relative w-full max-w-2xl rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+            
+            <Image 
+                src={myBackground}
+                alt="Enfants souriants"
+                class="w-full h-auto object-cover block" 
+            />
+            
+            <div class="absolute inset-0 bg-black/20"></div>
+
+        </div>
     </div>
 </section>

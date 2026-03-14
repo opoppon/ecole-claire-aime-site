@@ -12,8 +12,8 @@ Any static assets, like images, can be placed in the `public/` directory.
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                                        | Action                                      |
-| :--------------------------------------------- | :------------------------------------------ |
-| `npm install                               `   | Installs dependencies                       |
-| `npm run dev -- --port 9000 --hosts 0.0.0.0`   | Starts local dev server at `localhost:4321` |
-| `npm run build                               ` | Build your production site to `./dist/`     |
+| Command                                                  | Action                                      |
+| :------------------------------------------------------- | :------------------------------------------ |
+| `nvm use ; npm install                               `   | Installs dependencies                       |
+| `nvm use ; npm run dev -- --port 9000 --hosts 0.0.0.0`   | Starts local dev server at `localhost:4321` |
+| `nvm use ; npm run build                               ` | Build your production site to `./dist/`     |

@@ -4,18 +4,25 @@ import Layout from "../layouts/Layout.astro";
 
 import AppHeader from '../components/Header.astro';
 import AppFooter from '../components/Footer.astro';
-const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
+
+import type { MarkdownInstance } from 'astro';
+
+interface Frontmatter {
+    title: string;
+    description?: string;
+}
+
+const allPosts = Object.values(import.meta.glob<MarkdownInstance<Frontmatter>>('./posts/*.md', { eager: true }));
 
 ---
 
 
 <Layout>
-    <AppHeader />
-    
-    <section class="py-40">
+    <AppHeader />    
+    <section class="py-10">
         <div class="max-w-3xl mx-auto">
           <div class="text-center mb-15">
-            <h1 class="title text-5xl font-black">Blog articles</h1>
+            <h1 class="title text-5xl font-black">Newletters</h1>
           </div>
           <div class="p-3">
             {allPosts.map(({url, frontmatter, rawContent }: any) => 

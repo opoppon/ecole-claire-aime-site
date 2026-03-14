@@ -7,10 +7,7 @@ author:
 image:
   url: "https://images.pexels.com/photos/313690/pexels-photo-313690.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
   alt: "xx"
-tags: [""]
 pubDate: 'Feb 09, 2025'
-likes: '12.3k'
-comments: '119'
 ---
 
 
