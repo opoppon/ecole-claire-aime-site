@@ -1,0 +1,82 @@
+---
+import '../styles/global.css'
+import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.astro"
+import AppHeader from '../components/Header.astro';
+import AppFooter from '../components/Footer.astro';
+
+const thStyle = "padding: 12px; text-align: left; border: 1px solid #ddd;"
+const tdStyle = "padding: 10px; border: 1px solid #ddd;"
+---
+<Layout>
+    <AppHeader />
+    <section class="py-10">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-center mb-15">
+            <h1 class="title text-5xl font-black">Dons</h1>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-10">
+            <section class="px-3">
+                <div class="max-w-3xl mx-auto bg-white text-center flex flex-col gap-4 border-3 shadow-[8px_8px_0px_rgba(0,0,0,0.3)]  relative p-10">
+                    <h1 class="text-3xl">Appel à votre générosité</h1>
+                    <p class="text-lg mx-auto text-justify">
+                        
+                    </p>
+                    <p class="text-lg mx-auto text-justify">
+                        L’association qui porte le projet est reconnue d’intérêt général, c'est à dire que vos dons peuvent bénéficier d'une déduction fiscale.
+                    </p>
+                    <p class="text-lg mx-auto text-justify">
+                        Si vous faites un don, l'État vous <strong>rembourse indirectement 66 %</strong> de la somme via une baisse de vos impôts. Si votre don dépasse le plafond de 20 % de vos revenus, ne vous inquiétez pas : vous pourrez déduire le reste de la somme sur vos déclarations des 5 prochaines années.
+                        <table style="width: 100%; border-collapse: collapse; font-family: sans-serif;">
+  <thead>
+    <tr style="background-color: #f2f2f2; border-bottom: 2px solid #ddd;">
+      <th style={thStyle}>Don effectué</th>
+      <th style={thStyle}>Réduction d'impôt (66 %)</th>
+      <th style={thStyle}>Coût réel pour le donateur</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style={tdStyle}>10 €</td>
+      <td style={tdStyle}>6 €</td>
+      <td style={tdStyle}>4 €</td>
+    </tr>
+    <tr style="background-color: #fafafa;">
+      <td style={tdStyle}>50 €</td>
+      <td style={tdStyle}>33 €</td>
+      <td style={tdStyle}>17 €</td>
+    </tr>
+    <tr>
+      <td style={tdStyle}>100 €</td>
+      <td style={tdStyle}>66 €</td>
+      <td style={tdStyle}>34 €</td>
+    </tr>
+    <tr style="background-color: #fafafa;">
+      <td style={tdStyle}>200 €</td>
+      <td style={tdStyle}>132 €</td>
+      <td style={tdStyle}>68 €</td>
+    </tr>
+    <tr>
+      <td style={tdStyle}>500 €</td>
+      <td style={tdStyle}>330 €</td>
+      <td style={tdStyle}>170 €</td>
+    </tr>
+    <tr style="background-color: #fafafa;">
+      <td style={tdStyle}>1 000 €</td>
+      <td style={tdStyle}>660 €</td>
+      <td style={tdStyle}>340 €</td>
+    </tr>
+  </tbody>
+</table>
+                    </p>
+                    <p class="text-lg mx-auto text-justify">
+                        <Button text="Soutenez-nous !" link="https://app.lacagnottedesproches.fr/cagnotte/une-classe-pour-des-enfants-extraordinaires/" target="_blank" />
+                    </p>
+                </div>
+            </section>
+        </div>
+    </section>
+    <AppFooter />
+</Layout>
