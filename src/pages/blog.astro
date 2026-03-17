@@ -6,13 +6,20 @@ import AppHeader from '../components/Header.astro';
 import AppFooter from '../components/Footer.astro';
 
 import type { MarkdownInstance } from 'astro';
+import {formatDate} from '../utils';
 
 interface Frontmatter {
     title: string;
     description?: string;
+    date: string;
+    image?: string
 }
 
-const allPosts = Object.values(import.meta.glob<MarkdownInstance<Frontmatter>>('./posts/*.md', { eager: true }));
+const allPosts = Object
+    .values(import.meta.glob<MarkdownInstance<Frontmatter>>('./posts/*.md', { eager: true }))
+    .sort((a, b) => {
+        return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime();
+});
 
 ---
 
@@ -34,6 +41,7 @@ const allPosts = Object.values(import.meta.glob<MarkdownInstance<Frontmatter>>('
                 </div>
                 <div class="flex flex-col gap-2">
                     <h1 class="line-clamp-2 text-xl font-bold">{frontmatter.title}</h1>
+                    <h5>Le {formatDate(frontmatter.date)}</h5>
                     <div class="line-clamp-2" set:html={rawContent}></div>
                 </div>
             </a>
