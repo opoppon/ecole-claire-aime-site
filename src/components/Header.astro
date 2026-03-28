@@ -1,5 +1,7 @@
 ---
 import Button from "../components/Button.astro"
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.jpg';
 
 const links = [
     { name: "Accueil", path: "/", target: "_self" },
@@ -12,14 +14,20 @@ const { pathname } = Astro.url;
 ---
 
 <header class="relative border-b-3 p-8 md:p-3 overflow-hidden bg-[var(--white)]">
-    <div
-        class="flex bg-white max-w-[310px] md:max-w-xl m-auto relative z-10"
-    >
+    <div class="flex bg-white max-w-7xl mx-auto relative z-10">
         <nav class="flex w-full items-center p-2 md:p-0">
-            <a href="#" class="flex md:hidden" id="menu-open">
-                <i class="ri-menu-2-line text-2xl"></i>
-            </a>            
-            <ul class="hidden md:flex items-center gap-15">
+            
+            <div class="flex-shrink-0">
+                <Image src={logo} alt="logo" height={150}/>
+            </div>
+
+            <div class="flex-1 flex justify-end md:hidden">
+                <a href="#" id="menu-open">
+                    <i class="ri-menu-2-line text-3xl"></i>
+                </a>
+            </div>
+            
+            <ul class="hidden md:flex flex-1 items-center justify-center gap-10">
                 {links.map((item) => (
                 <li class="p-3 py-4">
                     {item.path === "/dons/" ? (
@@ -37,7 +45,10 @@ const { pathname } = Astro.url;
                     )}
                 </li>
                 ))}
-            </ul>            
+            </ul>
+
+            <div class="hidden md:block w-[150px]"></div>
+            
         </nav>
     </div>
 </header>
