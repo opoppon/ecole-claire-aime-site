@@ -17,3 +17,9 @@ All commands are run from the root of the project, from a terminal:
 | `nvm use ; npm install                               `   | Installs dependencies                       |
 | `nvm use ; npm run dev -- --port 9000 --hosts 0.0.0.0`   | Starts local dev server at `localhost:4321` |
 | `nvm use ; npm run build                               ` | Build your production site to `./dist/`     |
+
+
+## Déploiement
+Executer le build
+
+rsync -avz --delete dist/ debian@152.228.140.231:/var/www/ecole-claire-aime/
