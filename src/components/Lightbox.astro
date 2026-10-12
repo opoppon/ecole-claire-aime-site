@@ -1,0 +1,56 @@
+<dialog id="lightbox" class="m-auto max-w-[95vw] max-h-[95vh] bg-transparent backdrop:bg-black/80">
+    <img class="max-w-[90vw] max-h-[85vh] object-contain border-2 border-white" alt="" />
+    <button type="button" data-action="close" class="fixed top-4 right-4 text-white text-4xl" aria-label="Fermer">
+        <i class="ri-close-line"></i>
+    </button>
+    <button type="button" data-action="prev" class="fixed left-2 top-1/2 -translate-y-1/2 text-white text-5xl" aria-label="Photo précédente">
+        <i class="ri-arrow-left-s-line"></i>
+    </button>
+    <button type="button" data-action="next" class="fixed right-2 top-1/2 -translate-y-1/2 text-white text-5xl" aria-label="Photo suivante">
+        <i class="ri-arrow-right-s-line"></i>
+    </button>
+</dialog>
+
+<script>
+    const dialog = document.getElementById('lightbox') as HTMLDialogElement;
+    const img = dialog.querySelector('img')!;
+    let items: HTMLElement[] = [];
+    let index = 0;
+
+    function show() {
+        const item = items[index];
+        img.src = item.dataset.full!;
+        img.alt = item.querySelector('img')?.alt ?? '';
+    }
+
+    function move(step: number) {
+        index = (index + step + items.length) % items.length;
+        show();
+    }
+
+    // Navigation limitée aux photos de la galerie cliquée
+    document.querySelectorAll('.gallery').forEach((gallery) => {
+        const galleryItems = [...gallery.querySelectorAll<HTMLElement>('.gallery-item')];
+        galleryItems.forEach((item, i) => {
+            item.addEventListener('click', () => {
+                items = galleryItems;
+                index = i;
+                show();
+                dialog.showModal();
+            });
+        });
+    });
+
+    dialog.addEventListener('click', (e) => {
+        const action = (e.target as HTMLElement).closest('button')?.dataset.action;
+        if (action === 'close' || e.target === dialog) dialog.close();
+        if (action === 'prev') move(-1);
+        if (action === 'next') move(1);
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (!dialog.open) return;
+        if (e.key === 'ArrowLeft') move(-1);
+        if (e.key === 'ArrowRight') move(1);
+    });
+</script>

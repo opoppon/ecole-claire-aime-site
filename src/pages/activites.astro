@@ -1,0 +1,73 @@
+---
+import '../styles/global.css'
+import Layout from "../layouts/Layout.astro";
+import type { ImageMetadata } from 'astro';
+
+import AppHeader from '../components/Header.astro';
+import AppFooter from '../components/Footer.astro';
+import Gallery from '../components/Gallery.astro';
+import Lightbox from '../components/Lightbox.astro';
+
+// Chaque section affiche les photos du dossier src/assets/activites/<dossier>/ (triées par nom de fichier)
+const sections = [
+    {
+        title: "Cuisine",
+        desc: `L'activité cuisine est assurée par la cheffe Mylène`,
+        dossier: "cuisine",
+    },
+    {
+        title: "Théâtre",
+        desc: `L'activité théâtre est assurée par Max et Marie-Claude`,
+        dossier: "theatre",
+    },
+    {
+        title: "Potager",
+        desc: `L'activité potager se fait en inclusion avec les élèves du collège du Parc`,
+        dossier: "potager",
+    },
+    {
+        title: "Sport",
+        desc: `En inclusion avec le collège du Parc.`,
+        dossier: "sport",
+    },
+];
+
+const photos = import.meta.glob<{ default: ImageMetadata }>(
+    '../assets/activites/*/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}',
+    { eager: true }
+);
+
+function photosDuDossier(dossier: string) {
+    return Object.keys(photos)
+        .filter((path) => path.startsWith(`../assets/activites/${dossier}/`))
+        .sort()
+        .map((path) => photos[path].default);
+}
+---
+<Layout>
+    <AppHeader />
+    <section class="py-10">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-center mb-15">
+            <h1 class="title text-5xl font-black">Activités</h1>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-10">
+            {sections.map((item) => {
+                const images = photosDuDossier(item.dossier);
+                return (
+                    <section class="px-3">
+                        <div class="max-w-3xl mx-auto bg-white flex flex-col gap-6 border-3 shadow-[8px_8px_0px_rgba(0,0,0,0.3)] relative p-6 md:p-10">
+                            <h2 class="text-3xl text-center">{item.title}</h2>
+                            <p class="text-lg text-justify" set:html={item.desc}></p>
+                            {images.length > 0 && <Gallery images={images} title={item.title} />}
+                        </div>
+                    </section>
+                );
+            })}
+        </div>
+    </section>
+    <Lightbox />
+    <AppFooter />
+</Layout>

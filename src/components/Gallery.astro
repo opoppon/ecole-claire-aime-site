@@ -1,0 +1,31 @@
+---
+import { Image, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+    images: ImageMetadata[];
+    title: string;
+}
+
+const { images, title } = Astro.props;
+const fulls = await Promise.all(images.map((img) => getImage({ src: img, width: Math.min(img.width, 1600) })));
+---
+
+<div class="gallery grid grid-cols-2 md:grid-cols-3 gap-3">
+    {images.map((img, i) => (
+        <button
+            type="button"
+            class="gallery-item block aspect-square overflow-hidden border-2 bg-gray-100 cursor-zoom-in"
+            data-full={fulls[i].src}
+            aria-label={`Agrandir la photo ${i + 1} — ${title}`}
+        >
+            <Image
+                src={img}
+                alt={`${title} — photo ${i + 1}`}
+                width={400}
+                height={400}
+                class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+            />
+        </button>
+    ))}
+</div>
