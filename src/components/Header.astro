@@ -13,12 +13,13 @@ const links = [
 const { pathname } = Astro.url;
 ---
 
-<header class="relative border-b-3 p-8 md:p-3 overflow-hidden bg-[var(--white)]">
+<header class="relative z-30 border-b-3 px-8 md:px-3 bg-[var(--white)]">
     <div class="flex bg-white max-w-7xl mx-auto relative z-10">
-        <nav class="flex w-full items-center p-2 md:p-0">
+        <nav class="flex w-full h-[87px] items-center px-2 md:px-0">
             
-            <div class="flex-shrink-0">
-                <Image src={logo} alt="logo" height={150}/>
+            <!-- Le logo garde sa taille et déborde sous la ligne noire -->
+            <div class="relative flex-shrink-0 self-stretch w-[152px]">
+                <Image src={logo} alt="logo" height={150} class="absolute top-3 left-0 h-[150px] w-auto max-w-none rounded-b-full"/>
             </div>
 
             <div class="flex-1 flex justify-end md:hidden">
@@ -54,7 +55,7 @@ const { pathname } = Astro.url;
 </header>
 
 <div
-    class="block md:hidden fixed left-0 top-0 h-full w-full bg-white z-20 p-3 transition-all duration-300 -translate-x-[100%]"
+    class="block md:hidden fixed left-0 top-0 h-full w-full bg-white z-40 p-3 transition-all duration-300 -translate-x-[100%]"
     id="menu-content"
 >
     <div class="flex p-6">
