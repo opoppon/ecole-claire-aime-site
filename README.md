@@ -12,11 +12,11 @@ Any static assets, like images, can be placed in the `public/` directory.
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                                                    | Action                                      |
+| Command                                                     | Action                                      |
 | :---------------------------------------------------------- | :------------------------------------------ |
 | `mise install ; npm install                               ` | Installs dependencies                       |
-| `mise install ; npm run dev -- --port 9000 --hosts 0.0.0.0`  | Starts local dev server at `localhost:4321` |
-| `mise install ; npm run build                              ` | Build your production site to `./dist/`     |
+| `mise install ; npm run dev -- --port 9000 --host 0.0.0.0`  | Starts local dev server at `localhost:4321` |
+| `mise install ; npm run build                              `| Build your production site to `./dist/`     |
 
 La version de Node.js utilisée est définie dans `.mise.toml`. `mise` bascule automatiquement dessus en entrant dans le dossier du projet (voir [mise-en-place](https://mise.jdx.dev)).
 
